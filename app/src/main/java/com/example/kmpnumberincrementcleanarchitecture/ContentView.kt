@@ -1,4 +1,4 @@
-package com.example.kmpnumberincrementclearnarchitecture
+package com.example.kmpnumberincrementcleanarchitecture
 
 
 import androidx.compose.foundation.layout.*
@@ -17,7 +17,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Composable
-fun ContentView(modifier: Modifier) {
+fun ContentView(modifier: Modifier= Modifier) {
     var tapCount by remember { mutableStateOf(0) }
     val maxAttempts by remember { mutableStateOf(10) } // Assuming this is constant for now
     var showError by remember { mutableStateOf(false) }
@@ -128,6 +128,6 @@ fun ContentView(modifier: Modifier) {
 @Composable
 fun DefaultPreview() {
     MaterialTheme { // Wrap in MaterialTheme for previews and proper styling
-//        ContentView()
+        ContentView()
     }
 }
