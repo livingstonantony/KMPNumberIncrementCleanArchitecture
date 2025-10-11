@@ -12,15 +12,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.kmpnumberincrementcleanarchitecture.di.AppModule
-import com.example.kmpnumberincrementcleanarchitecture.viewmodel.CounterUiState
-import com.example.kmpnumberincrementcleanarchitecture.viewmodel.CounterViewModel
+import com.example.shared.di.mainViewModelFactory
+import com.example.shared.viewmodel.CounterUiState
+import com.example.shared.viewmodel.CounterViewModel
 
 @Composable
 fun ContentView(
     modifier: Modifier = Modifier,
     viewModel: CounterViewModel = viewModel(
-        factory = AppModule.provideCounterViewModelFactory()
+        factory = mainViewModelFactory,
     )
 
 ) {
