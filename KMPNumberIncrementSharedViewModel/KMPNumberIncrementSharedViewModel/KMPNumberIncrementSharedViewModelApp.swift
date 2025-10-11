@@ -6,12 +6,25 @@
 //
 
 import SwiftUI
+import sharedKit
 
 @main
 struct KMPNumberIncrementSharedViewModelApp: App {
+
+    let appContainer: ObservableValueWrapper<AppContainer>
+
+    init() {
+        self.appContainer = ObservableValueWrapper<AppContainer>(
+            value: AppContainer()
+        )
+    }
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ViewModelStoreOwnerProvider {
+                ContentView()
+            }
+            .environmentObject(appContainer)
         }
     }
 }

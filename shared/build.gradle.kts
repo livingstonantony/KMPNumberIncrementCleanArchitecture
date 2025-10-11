@@ -40,8 +40,9 @@ kotlin {
     ).forEach {
         it.binaries.framework {
             // Add this line to all the targets you want to export this dependency
-            export(libs.androidx.lifecycle.viewmodel)
             baseName = xcfName
+            export(libs.androidx.lifecycle.viewmodel)
+
         }
     }
 

@@ -7,12 +7,12 @@
 
 import Foundation
 import sharedKit
-
+import SwiftUI
 
 // [START android_kmp_viewmodel_ios_viewmodel_storeowner]
 // iosApp/IosViewModelStoreOwner.swift
 
-class IosViewModelStoreOwner: ObservableObject, ViewModelStoreOwner {
+class IOSViewModelStoreOwner: ObservableObject, ViewModelStoreOwner {
 
     let viewModelStore = ViewModelStore()
 
