@@ -8,17 +8,15 @@ import com.example.shared.domain.DummyCounterService
 import com.example.shared.viewmodel.CounterViewModel
 
 
-
-class AppContainer{
-    private val service: DummyCounterService by lazy { DummyCounterServiceImpl() }
-    private val repository: CounterRepository by lazy { CounterRepository(service) }
+private val service: DummyCounterService by lazy { DummyCounterServiceImpl() }
+private val repository: CounterRepository by lazy { CounterRepository(service) }
 
 
-    val mainViewModelFactory = viewModelFactory {
-        initializer {
-            CounterViewModel(repository = repository)
-        }
+val mainViewModelFactory = viewModelFactory {
+    initializer {
+        CounterViewModel(repository = repository)
     }
-
 }
+
+
 

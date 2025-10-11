@@ -12,19 +12,14 @@ import Foundation
 struct ContentView: View {
 
    /// Injects the `IOSViewModelStoreOwner` from the environment, which manages the lifecycle of `ViewModel` instances.
-   @EnvironmentObject var viewModelStoreOwner: IOSViewModelStoreOwner
-
-   /// Injects the `AppContainer` from the environment, providing access to application-wide dependencies.
-   @EnvironmentObject var appContainer: ObservableValueWrapper<AppContainer>
-
-   @StateObject private var viewModel = IOSViewModelStoreOwner()
+    @StateObject private var viewModelStoreOwner = IosViewModelStoreOwner()
 
    var body: some View {
 
-       let viewModel: CounterViewModel = viewModel.viewModel(
-           factory: CounterViewModel.mainViewModelFactory
-       )
 
+       let mainViewModel: CounterViewModel = viewModelStoreOwner.viewModel(
+           factory: MainViewModelKt.mainViewModelFactory
+       )
        VStack{
 
            HStack {

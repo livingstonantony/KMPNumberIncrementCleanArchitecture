@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.kmpnumberincrementcleanarchitecture.LocalAppContainer
+import com.example.shared.di.mainViewModelFactory
 import com.example.shared.viewmodel.CounterUiState
 import com.example.shared.viewmodel.CounterViewModel
 
@@ -20,7 +20,7 @@ import com.example.shared.viewmodel.CounterViewModel
 fun ContentView(
     modifier: Modifier = Modifier,
     viewModel: CounterViewModel = viewModel(
-        factory = LocalAppContainer.current.mainViewModelFactory,
+        factory = mainViewModelFactory,
     )
 
 ) {
