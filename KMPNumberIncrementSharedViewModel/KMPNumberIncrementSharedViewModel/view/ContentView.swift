@@ -32,6 +32,10 @@ struct ContentView: View {
     
     @ViewBuilder
     private func content(for uiState: CounterUiState, viewModel: CounterViewModel) -> some View {
+        let currentCount = attempts(from: uiState)
+        let maxAttempts: Int32 = 10
+        let isMaxReached = currentCount >= maxAttempts
+        
         VStack {
             // --- Header / Attempts ---
             HStack {
@@ -40,14 +44,12 @@ struct ContentView: View {
                     .foregroundColor(.green)
                     .padding(.top, 20)
                 
-                Text("\(attempts(from: uiState))/\(10)")
+                Text("\(currentCount)/\(maxAttempts)")
                     .padding(.top, 20)
                     .padding(.trailing, 20)
             }
             
             Spacer()
-            
-            
             
             // --- Loading ---
             if uiState is CounterUiState.Loading {
@@ -83,8 +85,26 @@ struct ContentView: View {
                 }
             }
             
+            // --- Max attempts message for Success state ---
+            if isMaxReached && !(uiState is CounterUiState.Error) {
+                VStack(spacing: 20) {
+                    Text("Maximum attempts reached!")
+                        .bold()
+                        .foregroundColor(.red)
+                    
+                    Button("Reset") {
+                        viewModel.reset()
+                    }
+                    .padding()
+                    .background(Color.red)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                }
+            }
+            
             Spacer()
             
+            // --- Action Button ---
             Button(action: {
                 viewModel.increment()
             }) {
@@ -98,6 +118,7 @@ struct ContentView: View {
             .padding(.bottom, 20)
         }
     }
+
     
     private func attempts(from uiState: CounterUiState) -> Int32 {
         switch uiState {
