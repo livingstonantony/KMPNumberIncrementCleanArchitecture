@@ -36,6 +36,12 @@ class IosViewModelStoreOwner: ObservableObject, ViewModelStoreOwner {
     }
 
     /// This is called when this class is used as a `@StateObject`
+
+    func clear() {
+        viewModelStore.clear()
+    }
+
+    /// This is called when this class is used as a `@StateObject`
     deinit {
         viewModelStore.clear()
     }

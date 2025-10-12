@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.kotlin.multiplatform.library)
     alias(libs.plugins.android.lint)
+    alias(libs.plugins.skie)
 }
 
 kotlin {
@@ -57,6 +58,7 @@ kotlin {
                 implementation(libs.kotlin.stdlib)
                 // Add KMP dependencies here
                 api(libs.androidx.lifecycle.viewmodel)
+                implementation(libs.skie.annotations)
             }
         }
 
@@ -93,4 +95,14 @@ kotlin {
         }
     }
 
+}
+skie {
+    features {
+        // https://skie.touchlab.co/features/flows-in-swiftui
+        enableSwiftUIObservingPreview = true
+    }
+
+    analytics {
+        enabled.set(false)
+    }
 }

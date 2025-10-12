@@ -20,7 +20,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-
+            CompositionLocalProvider(
+                LocalAppContainer provides (this.applicationContext as CounterAndroidApp).container,
+            ) {
                 MaterialTheme {
                     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                         ContentView(
@@ -28,6 +30,7 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                 }
+            }
         }
     }
 }
