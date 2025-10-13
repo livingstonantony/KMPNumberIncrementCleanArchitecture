@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "KMPNumberIncrementCleanArchitecture"
 include(":app")
+include(":shared")
