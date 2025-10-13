@@ -34,7 +34,6 @@ struct ContentView: View {
     private func content(for uiState: CounterUiState, viewModel: CounterViewModel) -> some View {
         let currentCount = attempts(from: uiState)
         let maxAttempts: Int32 = 10
-        let isMaxReached = currentCount >= maxAttempts
         
         VStack {
             // --- Header / Attempts ---
@@ -85,22 +84,6 @@ struct ContentView: View {
                 }
             }
             
-            // --- Max attempts message for Success state ---
-            if isMaxReached && !(uiState is CounterUiState.Error) {
-                VStack(spacing: 20) {
-                    Text("Maximum attempts reached!")
-                        .bold()
-                        .foregroundColor(.red)
-                    
-                    Button("Reset") {
-                        viewModel.reset()
-                    }
-                    .padding()
-                    .background(Color.red)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-                }
-            }
             
             Spacer()
             
@@ -133,8 +116,8 @@ struct ContentView: View {
     
     private func buttonColor(for uiState: CounterUiState) -> Color {
         switch uiState {
-        case let success as CounterUiState.Success:
-            return success.count < 10 ? .blue : .gray
+        case is CounterUiState.Success:
+            return .blue
         case is CounterUiState.Loading:
             return .gray
         case let error as CounterUiState.Error:
@@ -145,9 +128,10 @@ struct ContentView: View {
     }
     
     private func isButtonDisabled(for uiState: CounterUiState) -> Bool {
+        
         switch uiState {
-        case let success as CounterUiState.Success:
-            return success.count >= 10
+        case is CounterUiState.Success:
+            return false
         case is CounterUiState.Loading:
             return true
         case is CounterUiState.Error:

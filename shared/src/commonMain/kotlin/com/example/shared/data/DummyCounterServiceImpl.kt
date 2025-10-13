@@ -9,7 +9,7 @@ class DummyCounterServiceImpl : DummyCounterService {
     override suspend fun increment(current: Int): Result<Int> {
         delay(500) // simulate a network/db delay
         return if (current < max) {
-            Result.success(current + 1)
+            Result.success(current+1)
         } else {
             Result.failure(IllegalStateException("Maximum count reached"))
         }
