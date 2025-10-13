@@ -60,14 +60,21 @@ struct ContentView: View {
                 }
             }
             // --- Success ---
-            else if let success = uiState as? CounterUiState.Success {
+            if let success = uiState as? CounterUiState.Success {
                 Text("Count: \(success.count)")
                     .bold()
                     .font(.largeTitle)
             }
             // --- Error ---
-            else if let error = uiState as? CounterUiState.Error {
+            if let error = uiState as? CounterUiState.Error {
                 VStack(spacing: 20) {
+                    
+                    Text("Count: \(error.count)")
+                        .bold()
+                        .font(.largeTitle)
+                        .opacity(0.3)
+                        .padding(.bottom, 14)
+                    
                     Text("Maximum attempts reached!")
                         .bold()
                         .foregroundColor(.red)
