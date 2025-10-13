@@ -51,6 +51,7 @@ fun ContentView(
                 else -> 0
             }
 
+
             Text(text = "$attempts/10")
         }
 
