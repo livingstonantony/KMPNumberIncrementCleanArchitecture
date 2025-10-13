@@ -1,4 +1,5 @@
-<img src="https://github.com/livingstonantony/KMPNumberIncrementCleanArchitecture/blob/main/doc/flow.jpg" width="400"/> <img src="https://github.com/livingstonantony/KMPNumberIncrementCleanArchitecture/blob/main/doc/completed.gif" width="400"/>
+<img src="https://github.com/livingstonantony/KMPNumberIncrementCleanArchitecture/blob/main/doc/flow.jpg" width="400"/> 
+<img src="https://github.com/livingstonantony/KMPNumberIncrementCleanArchitecture/blob/main/doc/completed.gif" width="400"/>
 
 
 ## shared
