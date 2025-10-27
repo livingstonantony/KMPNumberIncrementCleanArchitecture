@@ -81,7 +81,7 @@ struct ContentView: View {
                     
                     if error.canReset {
                         Button("Reset") {
-                            viewModel.reset()
+                            viewModel.process(counterIntent: sharedKit.CounterIntent.Reset())
                         }
                         .padding()
                         .background(Color.red)
@@ -96,7 +96,7 @@ struct ContentView: View {
             
             // --- Action Button ---
             Button(action: {
-                viewModel.increment()
+                viewModel.process(counterIntent: sharedKit.CounterIntent.Increment())
             }) {
                 Text("TAP TO INCREASE")
                     .padding()

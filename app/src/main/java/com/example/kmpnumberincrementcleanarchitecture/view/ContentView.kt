@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.kmpnumberincrementcleanarchitecture.LocalAppContainer
+import com.example.shared.viewmodel.CounterIntent
 import com.example.shared.viewmodel.CounterUiState
 import com.example.shared.viewmodel.CounterViewModel
 
@@ -20,7 +21,7 @@ import com.example.shared.viewmodel.CounterViewModel
 fun ContentView(
     modifier: Modifier = Modifier,
     viewModel: CounterViewModel = viewModel(
-        factory =  LocalAppContainer.current.mainViewModelFactory,
+        factory = LocalAppContainer.current.mainViewModelFactory,
     )
 
 ) {
@@ -98,7 +99,7 @@ fun ContentView(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Button(
-                    onClick = { viewModel.reset() },
+                    onClick = { viewModel.process(CounterIntent.Reset) },
                     colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
                 ) {
                     Text("Reset", color = Color.White)
@@ -109,7 +110,7 @@ fun ContentView(
         Spacer(modifier = Modifier.weight(1f))
 
         Button(
-            onClick = { viewModel.increment() },
+            onClick = { viewModel.process(CounterIntent.Increment) },
             enabled = uiState !is CounterUiState.Loading &&
                     (uiState !is CounterUiState.Error || (uiState as CounterUiState.Error).canReset.not()),
             colors = ButtonDefaults.buttonColors(
