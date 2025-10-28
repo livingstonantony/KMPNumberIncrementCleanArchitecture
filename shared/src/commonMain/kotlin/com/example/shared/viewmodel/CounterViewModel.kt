@@ -39,23 +39,29 @@ class CounterViewModel(
     }
 
     suspend fun increment() {
-        _uiState.value = CounterUiState.Loading
+        _uiState.update { CounterUiState.Loading }
         val result = repository.increment(currentCount)
-        _uiState.value = result.fold(
-            onSuccess = {
-                currentCount = it
-                CounterUiState.Success(it)
-            },
-            onFailure = {
-                CounterUiState.Error(currentCount, it.message ?: "Unknown error", canReset = true)
-            }
-        )
+        _uiState.update {
+            result.fold(
+                onSuccess = {
+                    currentCount = it
+                    CounterUiState.Success(it)
+                },
+                onFailure = {
+                    CounterUiState.Error(
+                        currentCount,
+                        it.message ?: "Unknown error",
+                        canReset = true
+                    )
+                }
+            )
+        }
     }
 
     suspend fun reset() {
-        _uiState.value = CounterUiState.Loading
+        _uiState.update { CounterUiState.Loading }
         currentCount = repository.reset()
-        _uiState.value = CounterUiState.Success(currentCount)
+        _uiState.update { CounterUiState.Success(currentCount) }
     }
 }
 
