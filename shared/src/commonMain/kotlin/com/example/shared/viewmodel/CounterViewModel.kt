@@ -2,7 +2,8 @@ package com.example.shared.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.shared.data.CounterRepository
+import com.example.shared.data.CounterRepositoryImpl
+import com.example.shared.domain.CounterRepository
 
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
